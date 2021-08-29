@@ -71,3 +71,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 --------TO KNOW--------
+Idea was obviously taken from youtube but most of the work done is by me. If you'll see the code you can clearly distinguish my style of coding.
