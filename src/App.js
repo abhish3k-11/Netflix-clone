@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import Watch from "./pages/watch/Watch";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
-function App() {
+const App = () => {
+  const user = true;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          {user ? <Home /> : <Redirect to="/register" />}
+        </Route>
+        <Route path="/register">{!user ? <Register /> : <Home to="/" />}</Route>
+        <Route path="/login">{!user ? <Register /> : <Home to="/" />}</Route>
+        {user && (
+          <>
+            <Route path="/movies">
+              <Home type="movies" />
+            </Route>
+            <Route path="/series">
+              <Home type="series" />
+            </Route>
+            <Route path="/watch">
+              <Watch />
+            </Route>
+          </>
+        )}
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
